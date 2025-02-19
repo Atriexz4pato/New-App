@@ -20,6 +20,8 @@ Route::middleware('auth')->group(function () {
 //student routes
 Route::middleware(['auth','role:student'])->group(function () {
     Route::get('student/dashboard', [StudentController::class, 'dashboard'])->name('student.dashboard');
+    Route::post('/students/{id}/upload-acceptance-letter', [StudentController::class, 'uploadAcceptanceLetter'])->name('upload.acceptance_letter');
+
 });
 
 
