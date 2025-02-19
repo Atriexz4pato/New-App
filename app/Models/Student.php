@@ -2,19 +2,22 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Student extends Model
 {
     //this model represets the student
-    //it borrows or its an extension of from the user model
-
+    //it borrows, or it's an extension of from the user model
+    use HasFactory;
     protected $fillable = [
         'user_id',
         'programme',
         'attachment_county',
         'registration_number',
         'address',
+        'recommendation_letter',
+        'phone_number'
 
     ];
 
