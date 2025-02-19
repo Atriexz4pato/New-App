@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('assessors', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->string('employee_id')->nullable(false);
             $table->timestamps();
         });
     }
