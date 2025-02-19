@@ -18,6 +18,9 @@ return new class extends Migration
             $table->string('programme')->nullable();
             $table->string('attachment_county')->nullable();
             $table->string('location_address')->nullable();
+            $table->string('recommendation_letter')->nullable();
+            $table->string('acceptance_letter')->nullable();
+
             $table->timestamps();
         });
     }
