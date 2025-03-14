@@ -7,7 +7,7 @@ use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 Route::middleware('auth')->group(function () {
@@ -34,6 +34,17 @@ Route::middleware(['auth','role:assessor'])->group(function () {
 
 Route::middleware(['auth','role:admin'])->group(function () {
    Route::get('admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+   //manage assessors
+   Route::get('/admin/new_assessor', [AssessorController::class, 'createAssessor'])->name('admin.new_assessor');
+   Route::get('/admin/assessors', [AdminController::class, 'manageAssessors'])->name('admin.manage_assessors');
+   Route::post('/admin/new_assessor', [AdminController::class, 'storeAssessor'])->name('admin.store_new_assessor');
+   Route::delete('/admin/assessors/{id}', [AdminController::class, 'destroyAssessor'])->name('admin.destroy');
+   Route::get('/admin/assessors/{assessor}/edit', [AdminController::class, 'editAssessor'])->name('admin.edit_assessor');
+   Route::put('/admin/assessors/{assessor}', [AdminController::class, 'updateAssessor'])->name('admin.update_assessor');
+
+   //students
+    Route::get('admin/students', [AdminController::class, 'manageStudents'])->name('admin.manage_students');
 });
+
 
 require __DIR__.'/auth.php';
