@@ -9,7 +9,8 @@ class Assessor extends Model
 {
     //
     protected $fillable = [
-        'employee_id'
+        'employee_id',
+        'user_id'
     ];
 
     public function user(){
