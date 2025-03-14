@@ -12,4 +12,11 @@ class AssessorController extends Controller
     {
         return view('assessor.dashboard');
     }
+
+    public function createAssessor(){
+            $assessor = null;
+        return view('admin.createAssessor', compact('assessor'));
+
+
+    }
 }
