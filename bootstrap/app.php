@@ -14,7 +14,8 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware) {
         //
         $middleware->alias([
-            'role' => isAdmin::class
+            'role' => isAdmin::class,
+            'checkProfile' =>\App\Http\Middleware\checkStudentProfile::class,
         ]);
 
     })

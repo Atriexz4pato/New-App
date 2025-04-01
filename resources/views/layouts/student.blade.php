@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard</title>
+    <title>Student Dashboard Attachment</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
@@ -11,11 +11,11 @@
             height: 100%;
             margin: 0;
             font-family: 'Arial', sans-serif;
+            overflow: hidden;
         }
         body {
             display: flex;
             flex-direction: column;
-            min-height: 100vh; /* Ensure body takes full viewport height */
         }
         .navbar {
             background-color: rgba(255, 255, 255, 0.9);
@@ -30,15 +30,15 @@
         .dashboard-container {
             display: flex;
             flex-grow: 1;
-            padding-top: 60px; /* Space for fixed navbar */
-            padding-bottom: 40px; /* Space for fixed footer */
+            padding-top: 60px;
+            overflow: hidden;
         }
         .sidebar {
             width: 250px;
             background-color: #f8f9fa;
             padding-top: 20px;
-            height: 100%; /* Full height of container */
-            overflow-y: auto; /* Scroll sidebar if needed */
+            height: 100%;
+            overflow-y: auto;
             box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
         }
         .sidebar .nav-link {
@@ -56,9 +56,12 @@
         .main-content {
             flex-grow: 1;
             padding: 20px;
-            overflow-y: auto; /* Enable scrolling for main content */
+            overflow-y: auto;
             background-color: #f1f3f5;
-            height: calc(100vh - 100px); /* Adjust for navbar and footer */
+        }
+        .dashboard-content {
+            max-height: calc(100vh - 120px);
+            overflow-y: auto;
         }
         .footer {
             background-color: white;
@@ -70,14 +73,6 @@
             bottom: 0;
             left: 0;
             right: 0;
-            z-index: 1030;
-        }
-        .teacher-dashboard {
-            background-color: #f4f6f9;
-        }
-        .card-header {
-            background-color: #f8f9fa;
-            font-weight: bold;
         }
         @media (max-width: 768px) {
             .sidebar {
@@ -87,13 +82,10 @@
             }
             .dashboard-container {
                 flex-direction: column;
-                padding-bottom: 0; /* Adjust for mobile */
-            }
-            .main-content {
-                height: auto; /* Allow natural height on mobile */
             }
         }
     </style>
+    @stack('styles')
 </head>
 <body>
 <!-- Navbar -->
@@ -107,16 +99,14 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
+
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'home' %}">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" href="{% url 'teacher_dashboard' %}">Dashboard</a>
+                    <a class="nav-link active" href="{{route('student.dashboard')}}">Dashboard</a>
                 </li>
                 <li class="nav-item">
                     <form method="post" action="{{route('logout')}}">
                         @csrf
-                        <button type="submit" class="nav-link active" style="border: none; background: none; color: inherit;">
+                        <button type="button" class="nav-link active" style="border: none; background: none; color: inherit;">
                             Logout
                         </button>
                     </form>
@@ -128,51 +118,39 @@
 
 <!-- Dashboard Container -->
 <div class="dashboard-container">
-    <!-- Sidebar Navigation -->
+    <!-- Sidebar -->
     <nav class="sidebar">
         <ul class="nav flex-column">
             <li class="nav-item">
-                <a class="nav-link active" href="{{route('admin.dashboard')}}">
-                    <i class="fas fa-home me-2"></i>Dashboard
+                <a class="nav-link active" href="{{route('student.dashboard')}}">
+                    <i class="fas fa-home"></i> Dashboard
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{route('admin.assign_assessors')}}">
-                    <i class="fas fa-book me-2"></i>Manage Assessments
+                <a class="nav-link" href="{{route('student.my_assessors')}}">
+                    <i class="fas fa-book"></i> My Assessors
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#assessments">
-                    <i class="fas fa-file-alt me-2"></i>Assessments
+                <a class="nav-link" href="{{route('student.assessments')}}">
+                    <i class="fas fa-file-alt"></i> Assessments
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{route('admin.manage_students')}}">
-                    <i class="fas fa-users me-2"></i>Student Management
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{route('admin.manage_assessors')}}">
-                    <i class="fas fa-users me-2"></i>Assessor Management
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#grades">
-                    <i class="fas fa-chart-bar me-2"></i>Grading
+                <a class="nav-link" href="{{route('upload.documents')}}">
+                    <i class="fas fa-chart-bar"></i> Upload Docs
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#profile">
-                    <i class="fas fa-user-cog me-2"></i>Profile Settings
+                    <i class="fas fa-user-cog"></i> Profile Settings
                 </a>
             </li>
         </ul>
     </nav>
 
-    <!-- Main Content Area -->
-    <div class="main-content">
-        @yield('content')
-    </div>
+    <!-- Main Content -->
+    @yield('content')
 </div>
 
 <!-- Footer -->

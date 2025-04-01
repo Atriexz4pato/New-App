@@ -16,7 +16,8 @@ return new class extends Migration
         Schema::create('assessments', function (Blueprint $table) {
             $table->id();
             $table->foreignId('student_assessor_id')->constrained('student_assessor')->onDelete('cascade');
-            $table->date('assessment_date')->nullable();
+            $table->foreignId('student_id')->constrained('students')->onDelete('cascade');
+            $table->foreignId('assessor_id')->constrained('assessors')->onDelete('cascade');
             $table->integer('score')->nullable();
             $table->text('comments')->nullable();
             $table->timestamps();

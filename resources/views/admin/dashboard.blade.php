@@ -8,11 +8,11 @@
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
             <h1 class="h2">Admin Dashboard</h1>
             <div class="btn-toolbar mb-2 mb-md-0">
-                <div class="btn-group me-2">
-                    <button type="button" class="btn btn-sm btn-outline-secondary">
-                        <i class="fas fa-download me-1"></i>Export
-                    </button>
-                </div>
+{{--                <div class="btn-group me-2">--}}
+{{--                    <button type="button" class="btn btn-sm btn-outline-secondary">--}}
+{{--                        <i class="fas fa-download me-1"></i>Export--}}
+{{--                    </button>--}}
+{{--                </div>--}}
             </div>
         </div>
 
@@ -24,7 +24,7 @@
                     <div class="card-body">
                         <h3 class="card-title">0</h3>
                         <p class="card-text">Counties</p>
-                        <a href="#" class="btn btn-primary btn-sm">Create Course</a>
+                        <a href="#" class="btn btn-primary btn-sm">View Counties</a>
                     </div>
                 </div>
             </div>
@@ -67,19 +67,19 @@
                     <div class="card-header">
                         Quick Actions
                     </div>
-                    <div class="card-body">
-                        <div class="list-group">
-                            <a href="#" class="list-group-item list-group-item-action">
-                                <i class="fas fa-plus me-2"></i>Create New Course
-                            </a>
-                            <a href="#" class="list-group-item list-group-item-action">
-                                <i class="fas fa-file-upload me-2"></i>Upload Assignment
-                            </a>
-                            <a href="#" class="list-group-item list-group-item-action">
-                                <i class="fas fa-users me-2"></i>Invite Students
-                            </a>
-                        </div>
-                    </div>
+{{--                    <div class="card-body">--}}
+{{--                        <div class="list-group">--}}
+{{--                            <a href="#" class="list-group-item list-group-item-action">--}}
+{{--                                <i class="fas fa-plus me-2"></i>Create New Course--}}
+{{--                            </a>--}}
+{{--                            <a href="#" class="list-group-item list-group-item-action">--}}
+{{--                                <i class="fas fa-file-upload me-2"></i>Upload Assignment--}}
+{{--                            </a>--}}
+{{--                            <a href="#" class="list-group-item list-group-item-action">--}}
+{{--                                <i class="fas fa-users me-2"></i>Invite Students--}}
+{{--                            </a>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
                 </div>
             </div>
         </div>

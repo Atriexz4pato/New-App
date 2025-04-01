@@ -31,8 +31,7 @@
                                     <th>Name</th>
                                     <th>Email</th>
                                     <th>Phone</th>
-                                    <th>Department</th>
-                                    <th>Role</th>
+                                                                        <th>Department</th>
                                     <th>Actions</th>
                                 </tr>
                                 </thead>
@@ -48,7 +47,7 @@
                                         <td>{{ $user->department }}</td>
 {{--                                        <td>{{ $assessor->programme? }}</td>--}}
                                         <td>
-                                            <a href="#" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i> Edit</a>
+                                            <a href="#" class="btn btn-sm btn-primary/..."><i class="fas fa-edit"></i> Edit</a>
                                             <form action="#" method="POST" style="display:inline;"
                                                   onsubmit="return confirm('Are you sure you want to delete this student?');">
                                                 @csrf

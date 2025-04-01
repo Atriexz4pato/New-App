@@ -10,18 +10,29 @@ class Assessor extends Model
     //
     protected $fillable = [
         'employee_id',
-        'user_id'
+        'user_id',
+        'counties'
     ];
+
+    protected $casts = [
+        'counties' => 'array',
+    ];
+
+    protected $with = ['user'];
 
     public function user(){
         return $this->belongsTo(User::class);
     }
 
     public function student(){
-        return $this->belongsToMany(Student::class);
+        return $this->belongsToMany(Student::class, 'student_assessor')
+            ->withPivot('assessment_order', 'assessment_date')
+            ->withTimestamps();
     }
 
-    public function assessment(){
-        return $this->hasMany(Assessment::class);
+
+    // Helper method to check if the assessor is assigned to a specific county
+    public function hasCounty($county){
+        return in_array($county, $this->counties?? []);
     }
 }

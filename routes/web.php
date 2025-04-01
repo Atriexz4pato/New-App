@@ -20,8 +20,12 @@ Route::middleware('auth')->group(function () {
 //student routes
 Route::middleware(['auth','role:student'])->group(function () {
     Route::get('student/dashboard', [StudentController::class, 'dashboard'])->middleware('checkProfile')->name('student.dashboard');
-    Route::post('/students/{id}/upload-acceptance-letter', [StudentController::class, 'uploadAcceptanceLetter'])->name('upload.acceptance_letter');
     Route::post('student/update/profile', [StudentController::class, 'updateProfile'])->name('update.profile');
+    Route::get('student/documents', [StudentController::class, 'uploadDocuments'])->name('upload.documents');
+    Route::post('student/documents/upload', [StudentController::class, 'uploadAcceptanceLetter'])->name('upload.acceptance_letter');
+    Route::get('/student/my_assessors', [StudentController::class, 'myAssessors'])->name('student.my_assessors');
+    Route::get('/student/assessments',[StudentController::class,'assessments'])->name('student.assessments');
+
 
 });
 
@@ -43,8 +47,10 @@ Route::middleware(['auth','role:admin'])->group(function () {
    Route::get('/admin/assessors/{assessor}/edit', [AdminController::class, 'editAssessor'])->name('admin.edit_assessor');
    Route::put('/admin/assessors/{assessor}', [AdminController::class, 'updateAssessor'])->name('admin.update_assessor');
    Route::get('/admin/assign_assessors', [AdminController::class, 'assignAssessor'])->name('assign_assessors');
+   Route::post('/admin/assign_assessors', [AdminController::class, 'storeAssessorAssignment'])->name('admin.assign_assessors');
 
-   //students
+
+    //students
     Route::get('admin/students', [AdminController::class, 'manageStudents'])->name('admin.manage_students');
 });
 

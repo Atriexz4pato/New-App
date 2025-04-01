@@ -48,7 +48,7 @@
                                         <td>{{ $user->department }}</td>
                                         <td>{{ $assessor->role }}</td>
                                         <td>
-                                            <a href="{{route('admin.edit_assessor', $assessor->id)}}" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i> Edit</a>
+                                            <a href="{{route('admin.edit_assessor', $assessor->id)}}" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i> Edit</a>
                                             <form action="#" method="POST" style="display:inline;"
                                                   onsubmit="return confirm('Are you sure you want to delete this assessor?');">
                                                 @csrf
