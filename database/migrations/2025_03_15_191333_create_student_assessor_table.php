@@ -11,10 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
+
         Schema::create('student_assessor', function (Blueprint $table) {
             $table->id();
             $table->foreignId('student_id')->constrained()->onDelete('cascade');
             $table->foreignId('assessor_id')->constrained()->onDelete('cascade');
+            $table->tinyInteger('assessment_order')->default(1); // 1 for first, 2 for second
+            $table->date('assessment_date')->nullable();
             $table->timestamps();
         });
     }

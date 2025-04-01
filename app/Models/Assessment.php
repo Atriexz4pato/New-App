@@ -9,6 +9,12 @@ class Assessment extends Model
     //
 
     protected $fillable = [
+        'student_id',
+        'assessor_id',
+        'student_assessor_id',
+        'score',
+        'comments',
+
 
     ];
 

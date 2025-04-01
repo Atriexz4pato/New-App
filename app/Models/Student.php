@@ -15,22 +15,27 @@ class Student extends Model
         'programme',
         'attachment_county',
         'registration_number',
-        'address',
+        'location_address',
         'recommendation_letter',
-        'phone_number'
+        'phone_number',
+        'organisation',
+        'acceptance_letter',
 
     ];
 
     public function user(){
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function assessors()
     {
-        return $this->belongsToMany(Assessor::class );
+        return $this->belongsToMany(Assessor::class, 'student_assessor' )
+                ->withPivot('assessment_order','assessment_date')
+            ->withTimestamps();
     }
 
-    public function assessment(){
+
+    public function assessments(){
         return $this->hasMany(Assessment::class);
     }
 }
